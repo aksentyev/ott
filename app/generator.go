@@ -49,13 +49,7 @@ func (g *Generator) markSelfAsGenerator() (ok bool) {
 
 func (g *Generator) generatorHeartBeats() {
     for {
-        res:= s.Redis.SetXX(generatorRedisKey, true, generatorPingTTL)
-        if res == nil {
-            g.DoneCh<- true
-            return
-        }
-
-        ok, err := res.Result()
+        ok, err := s.Redis.SetXX(generatorRedisKey, true, generatorPingTTL).Result()
         if err != nil || !ok {
             g.DoneCh<- true
             return
