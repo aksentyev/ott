@@ -50,7 +50,7 @@ func (h *Handler) handleMessage(msg string) {
 }
 
 func (h *Handler) checkError(msg string) error {
-    if chance := rand.Float32(); chance >= 0.9 {
+    if chance := rand.Float32(); chance >= 0.95 {
         s.Logger.Debugf("an error occured while processing message: %v",msg)
         return errors.New("some error")
     }
